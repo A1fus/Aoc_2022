@@ -1,4 +1,5 @@
 from typing import List
+import copy
 
 
 def test_data() -> List[List[str]]:
@@ -35,6 +36,7 @@ def score(data: List[List[int]]) -> int:
 def apply_rules(data: List[List[int]]) -> List[List[int]]:
     lose_map = {1: 3, 2: 1, 3: 2}
     win_map = {1: 2, 2: 3, 3: 1}
+    data = copy.deepcopy(data)
     for x in data:
         if x[1] == 1:
             x[1] = lose_map[x[0]]
@@ -48,9 +50,9 @@ def apply_rules(data: List[List[int]]) -> List[List[int]]:
 def main():
     data = read_data()
     # data = test_data()
-    mod_data = convert_to_scores(data)
-    rules_data = apply_rules(convert_to_scores(data))
-    print(score(mod_data), score(rules_data))
+    int_data = convert_to_scores(data)
+    rules_data = apply_rules(int_data)
+    print(score(int_data), score(rules_data))
 
 
 if __name__ == "__main__":
